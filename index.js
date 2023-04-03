@@ -63,7 +63,8 @@ const zooAnimals = [
   */
 
   function animalNames(zooAnimals){
-    /*Your Code Here*/
+     const displayNames = zooAnimals.forEach(`name: ${animal_name}, scientific: ${scientific_name}`)
+     return displayNames
   }
   
 
@@ -186,8 +187,10 @@ function greeting(firstName, lastName){
 - Instances of CuboidMaker should initialize `length`, `width` and `height` properties
 */
 
-function CuboidMaker(/*Your Code Here */){
-  /*Your Code Here */
+function CuboidMaker({length, width, height}){
+  this.length = length;
+  this.width = width;
+  this.height = height;
 }
 
 
@@ -196,7 +199,9 @@ function CuboidMaker(/*Your Code Here */){
   💡 NOTE: Formula for cuboid volume: length * width * height   
 */
 
-
+CuboidMaker.prototype.volume = function() {
+  return length * width * height
+}
 
 
 /* 🐴🐴🐴 Step 3: Surface Area Method 🐴🐴🐴
