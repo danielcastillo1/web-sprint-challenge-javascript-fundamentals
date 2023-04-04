@@ -51,8 +51,18 @@ const zooAnimals = [
     { animal_name: "Common melba finch", population: 5, scientific_name: "Pytilia melba", state: "Pennsylvania" },
     { animal_name: "Pampa gray fox", population: 10, scientific_name: "Pseudalopex gymnocercus", state: "Connecticut" },
     { animal_name: "Hawk-eagle, crowned", population: 10, scientific_name: "Spizaetus coronatus", state: "Florida" },
-    { animal_name: "Australian pelican", population: 5, scientific_name: "Pelecanus conspicillatus", state: "West Virginia" },
+    { animal_name: "Australian pelican", population: 5, scientific_name: "Pelecanus conspicillatus", state: "West Virginia" }, 
   ];
+const parkAnimals = [{ animal_name: "Jackal, asiatic", population: 5, scientific_name: "Canis aureus", state: "Kentucky" },
+{ animal_name: "Screamer, southern", population: 1, scientific_name: "Chauna torquata", state: "Alabama" },
+{ animal_name: "White spoonbill", population: 8, scientific_name: "Platalea leucordia", state: "Georgia" },
+{ animal_name: "White-cheeked pintail", population: 1, scientific_name: "Anas bahamensis", state: "Oregon" },
+{ animal_name: "Black-backed jackal", population: 2, scientific_name: "Canis mesomelas", state: "Washington" },
+{ animal_name: "Brolga crane", population: 9, scientific_name: "Grus rubicundus", state: "New Mexico" },
+{ animal_name: "Common melba finch", population: 5, scientific_name: "Pytilia melba", state: "Pennsylvania" },
+{ animal_name: "Pampa gray fox", population: 10, scientific_name: "Pseudalopex gymnocercus", state: "Connecticut" },
+{ animal_name: "Hawk-eagle, crowned", population: 10, scientific_name: "Spizaetus coronatus", state: "Florida" },
+{ animal_name: "Australian pelican", population: 5, scientific_name: "Pelecanus conspicillatus", state: "West Virginia" }, ]
   
   /* 🦁🦁🦁 Request 1: .forEach() 🦁🦁🦁
   The zoos want to display both the scientific name and the animal name in front of the habitats. 
@@ -62,11 +72,13 @@ const zooAnimals = [
   💡 NOTE: the array returned should be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(zooAnimals){
-     const displayNames = zooAnimals.forEach(`name: ${animal_name}, scientific: ${scientific_name}`)
+  function animalNames(animalArr){
+    
+     const displayNames = []
+     animalArr.forEach(element => displayNames.push(`name: ${element.animal_name}, scientific: ${element.scientific_name}`) )
      return displayNames
   }
-  
+  console.log(animalNames(parkAnimals));
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
   The zoo needs a list of all their animal's names converted to lower case. 
@@ -187,10 +199,10 @@ function greeting(firstName, lastName){
 - Instances of CuboidMaker should initialize `length`, `width` and `height` properties
 */
 
-function CuboidMaker({length, width, height}){
-  this.length = length;
-  this.width = width;
-  this.height = height;
+function CuboidMaker(cuboid){
+  this.length = cuboid.length;
+  this.width = cuboid.width;
+  this.height = cuboid.height;
 }
 
 
@@ -200,7 +212,7 @@ function CuboidMaker({length, width, height}){
 */
 
 CuboidMaker.prototype.volume = function() {
-  return length * width * height
+   return this.length * this.width * this.height
 }
 
 
@@ -210,19 +222,23 @@ CuboidMaker.prototype.volume = function() {
 */
 
 
+CuboidMaker.prototype.surfaceArea = function() {
+  return 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
+}
+
 
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker (not auto graded)🐴🐴🐴
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
 
-
+const cuboid = new CuboidMaker({length: 4, width: 5, height: 5})
 
 
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-// console.log(cuboid.volume()); // 100
+ //console.log(cuboid.volume()); // 100
 // console.log(cuboid.surfaceArea()); // 130
  
 
@@ -230,10 +246,23 @@ CuboidMaker.prototype.volume = function() {
 //Using CuboidMakerTwo, take your prototypes from above and refactor into class syntax. Then, create an object called cuboidTwo that uses the new keyword to use our CuboidMakerTwo class.
  
 class CuboidMakerTwo{
+constructor(cuboidTwo) {
+  this.length = cuboidTwo.length;
+  this.width = cuboidTwo.width;
+  this.height = cuboidTwo.height;
 
 }
-
-
+volume() {
+  return this.length * this.width * this.height
+}
+surfaceArea() {
+  return 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
+}
+}
+const cuboidTwo = new CuboidMakerTwo({length: 4, width: 5, height: 5})
+const cuboidTwoOne = new CuboidMakerTwo({length: 7, width: 9, height: 2})
+console.log(cuboidTwo.volume());
+console.log(cuboidTwoOne.volume());
 
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
